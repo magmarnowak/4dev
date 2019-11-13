@@ -1,6 +1,6 @@
-import { actionCreators } from "./actionCreators"
+import { actions } from "./actions"
 
-const { setFieldValue, setErrors } = actionCreators
+const { setFieldValue, setErrors } = actions
 
 export const reducer = (state, { type, payload }) => {
   switch (type) {

@@ -1,6 +1,6 @@
 import { ActionFactory } from "../../../utils"
 
-export const actionCreators = {
+export const actions = {
   setFieldValue: ActionFactory("FORM_SET_FIELD_VALUE"),
   setFieldTouched: ActionFactory("FORM_SET_FIELD_TOUCHED"),
   submitAttempt: ActionFactory("FORM_SUBMIT_ATTEMPT"),

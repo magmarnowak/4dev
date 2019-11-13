@@ -1,5 +1,5 @@
 import { useReducer, useEffect } from "react"
-import { reducer, actionCreators } from "./store"
+import { reducer, actions } from "./store"
 
 const {
   setFieldValue,
@@ -8,15 +8,13 @@ const {
   submitSuccess,
   submitFailure,
   setErrors,
-} = actionCreators
+} = actions
 
 export const useForm = ({ initialState, onSubmit, validate }) => {
   const [state, dispatch] = useReducer(reducer, initialState)
-
   useEffect(() => {
     dispatch(setErrors.create(validate(state.values)))
   }, [state.values, validate])
-
   const handleChange = fieldName => e => {
     e.persist()
     dispatch(
@@ -52,7 +50,6 @@ export const useForm = ({ initialState, onSubmit, validate }) => {
       dispatch(submitFailure.create())
     }
   }
-
   return {
     state,
     getFieldProps,

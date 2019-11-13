@@ -1,6 +1,5 @@
-import { actionCreators } from "./actionCreators"
-
-const { updateTodos, setError } = actionCreators
+import { actions } from "./actions"
+const { updateTodos, setError } = actions
 
 const initialState = {
   todos: [],

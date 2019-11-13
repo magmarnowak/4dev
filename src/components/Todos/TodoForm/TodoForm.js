@@ -1,9 +1,8 @@
-import React from "react"
-import { useForm } from "../../../common/hooks"
-import { initialState, onSubmit, validate } from "./utils"
+import React, { useContext } from "react"
+import { FormContext } from "../../../common/hooks"
 
 const TodoForm = () => {
-  const { handleSubmit, getFieldProps } = useForm({ initialState, onSubmit, validate })
+  const { handleSubmit, getFieldProps } = useContext(FormContext)
   return (
     <form onSubmit={handleSubmit}>
       <div>
