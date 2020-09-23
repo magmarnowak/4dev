@@ -1,21 +1,24 @@
 import React, { useEffect } from "react"
-import { connect } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { fetchData } from "../../common/utils"
 import { actions } from "../../store/todo"
 import { TodoForm } from "./TodoForm"
 import { Form } from "../../common/hooks"
 import { initialState, onSubmit, validate } from "./TodoForm/utils"
 
-const Todos = ({ todos, updateTodos, setError }) => {
+
+export const Todos = () => {
+  const dispatch = useDispatch();
+  const todos = useSelector(state => state.todos);
   useEffect(() => {
     fetchData("todos")
       .then(todos => {
-        updateTodos(todos)
+        dispatch(actions.updateTodos.create(todos))
       })
       .catch(({ message }) => {
-        setError(message)
+        dispatch(actions.setError.create(message))
       })
-  }, [updateTodos, setError])
+  }, [dispatch])
   return (
     <div>
       {todos.map(({ id, title }) => (
@@ -27,12 +30,3 @@ const Todos = ({ todos, updateTodos, setError }) => {
     </div>
   )
 }
-const mapStateToProps = ({ todos, error }) => ({ todos, error })
-const mapDispatchToProps = {
-  updateTodos: actions.updateTodos.create,
-  setError: actions.setError.create,
-}
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(Todos)
