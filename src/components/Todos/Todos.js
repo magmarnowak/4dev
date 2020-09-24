@@ -21,7 +21,7 @@ export const Todos = () => {
   }, [dispatch]);
 
   return (
-    <div>
+    <div className={"App-todos"}>
       {todos.map(({ id, title }) => (
         <div key={id}>{title}</div>
       ))}
