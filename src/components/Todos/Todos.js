@@ -22,14 +22,10 @@ export const Todos = () => {
   }, [dispatch]);
 
   const onSubmit = (values) => {
-    postData("todos", values).then((newTodo) =>
-      dispatch(
-        actions.updateTodos.create([
-          ...todos,
-          newTodo,
-        ])
-      )
-    );
+    postData("todos", values)
+      .then((newTodo) => {
+        dispatch(actions.updateTodos.create([...todos, newTodo]));
+      });
   };
 
   return (
