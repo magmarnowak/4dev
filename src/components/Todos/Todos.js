@@ -4,7 +4,8 @@ import { fetchData } from "../../common/utils";
 import { actions } from "../../store/todo";
 import { TodoForm } from "./TodoForm";
 import { Form } from "../../common/hooks";
-import { initialState, onSubmit, validate } from "./TodoForm/utils";
+import { initialState, validate } from "./TodoForm/utils";
+import { postData } from "../../common/utils/fetchData";
 
 export const Todos = () => {
   const dispatch = useDispatch();
@@ -19,6 +20,17 @@ export const Todos = () => {
         dispatch(actions.setError.create(message));
       });
   }, [dispatch]);
+
+  const onSubmit = (values) => {
+    postData("todos", values).then((newTodo) =>
+      dispatch(
+        actions.updateTodos.create([
+          ...todos,
+          newTodo,
+        ])
+      )
+    );
+  };
 
   return (
     <div className={"App-todos"}>
