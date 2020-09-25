@@ -1,13 +1,18 @@
-import React, { useContext } from "react"
-import { FormContext } from "../../../common/hooks"
+import React, { useContext } from "react";
+import { FormContext } from "../../../common/hooks";
 
 const TodoForm = () => {
-  const { handleSubmit, getFieldProps } = useContext(FormContext)
+  const { state, handleSubmit, getFieldProps } = useContext(
+    FormContext
+  );
   return (
     <form onSubmit={handleSubmit}>
       <div>
         <label>Title</label>
         <input {...getFieldProps("title")} />
+        {state.errors.title==="require" && (
+        <div style={{ color: "red", fontSize: "16px" }}>This field is required</div>
+      )}
       </div>
       <div>
         <label>Description</label>
@@ -15,6 +20,6 @@ const TodoForm = () => {
       </div>
       <button>Add Todo</button>
     </form>
-  )
-}
-export default TodoForm
+  );
+};
+export default TodoForm;
